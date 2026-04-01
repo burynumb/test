@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR文字识别系统 - 百度AI赋能</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📷 OCR智能文字识别系统</h1>
+            <div class="student-info">
+                <span>🎓 学号：{{ student_id }}</span>
+                <span>👤 姓名：{{ student_name }}</span>
+            </div>
+            <p class="subtitle">基于百度AI开放平台OCR技术 | 支持图片文字识别</p>
+        </header>
+
+        <main>
+            <div class="upload-area">
+                <div class="upload-box" id="uploadBox">
+                    <div class="upload-icon">📸</div>
+                    <p>点击或拖拽上传图片</p>
+                    <p class="upload-hint">支持 JPG、PNG、BMP 格式，最大5MB</p>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="options">
+                    <label>识别模式：</label>
+                    <select id="ocrType">
+                        <option value="general">📄 标准版（快速）</option>
+                        <option value="accurate">🎯 高精度版（复杂场景）</option>
+                        <option value="position">📍 含位置信息版</option>
+                    </select>
+                    <button id="recognizeBtn" class="btn-primary" disabled>开始识别</button>
+                </div>
+                
+                <div id="previewArea" style="display: none;">
+                    <h3>图片预览</h3>
+                    <img id="previewImg" alt="预览图片">
+                </div>
+            </div>
+
+            <div class="result-area">
+                <div class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>AI正在识别中，请稍候...</p>
+                </div>
+                
+                <div id="resultContent" style="display: none;">
+                    <div class="result-header">
+                        <h3>识别结果</h3>
+                        <span id="wordCount"></span>
+                    </div>
+                    <div class="result-text">
+                        <pre id="recognizedText"></pre>
+                    </div>
+                    <button id="copyBtn" class="btn-secondary">📋 复制文本</button>
+                </div>
+                
+                <div id="errorMessage" class="error" style="display: none;"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>百度AI开放平台 | OCR文字识别技术 | 准确率超99%[citation:7]</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
